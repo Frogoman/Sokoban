@@ -5,9 +5,14 @@
     di
     ld sp, 0
 
+    ld hl, level1
+    ld de, actualLevel
+    ld bc, 773
+    ldir
+
     call drawMap
 
-    ld de, level2
+    ld de, actualLevel
     inc de
     inc de
     ld a, (de)
@@ -49,12 +54,11 @@ skipCycle:
 
 fin: jr fin
 
-CX: db 0
-CY: db 0
+actualLevel: defs 773
+CX: equ actualLevel+3
+CY: equ actualLevel+2
 DX: db 0
 DY: db 0
-PX: db 0
-PY: db 0
 
     include wait_no_keys.asm
     include draw_xyc.asm
