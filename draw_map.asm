@@ -3,20 +3,18 @@ drawMap:
     push bc
     push af
 
-    LD DE, level2
+    LD DE, actualLevel
     inc de
     inc de
     inc de
     inc de
     inc de
-    ld ix, level2
+    ld ix, actualLevel
     ld a, (ix)
-    ld (PY), a
     LD b, a
 
 loopy:
     ld a, (ix+1)
-    ld (PX), a
     ld c, a
 loopx:
     LD A, (DE)
