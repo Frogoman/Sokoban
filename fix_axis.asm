@@ -4,13 +4,13 @@ fixAxis:
 
     ld a, b
     ld e, a
-    ld a, (PY)
+    ld a, (ix)
     sub e
     ld b, a
 
     ld a, c
     ld e, a
-    ld a, (PX)
+    ld a, (ix+1)
     sub e
     ld c, a
 
