@@ -5,7 +5,7 @@
     di
     ld sp, 0
 
-    ld hl, level1
+    ld hl, level2
     ld de, actualLevel
     ld bc, 773
     ldir
