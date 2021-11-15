@@ -1,4 +1,3 @@
-#Sokoban
 To run this project:
 1- Open VS Code an install the "Z80 Assembly" and "DeZog" extensions
 2- Open the project folder with VS Code
