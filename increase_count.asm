@@ -1,0 +1,4 @@
+increaseCount:
+    inc d
+    
+    ret
