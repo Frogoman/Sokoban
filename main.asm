@@ -5,7 +5,9 @@
     di
     ld sp, 0
 
-    ld hl, level2
+    ld iy, maplist
+resetLevel:
+    ld hl, (iy)
     ld de, actualLevel
     ld bc, 773
     ldir
@@ -44,6 +46,7 @@ boxAndPlayer:
 
 playerOnly:
     call movePlayer
+    call checkFinish
 
 skipCycle:
     ld a, 0
@@ -51,6 +54,26 @@ skipCycle:
     ld (DX), a
     call waitNoKeys
     jr waitKeys
+
+nextLevel:
+    ld a, 0
+    ld (DY), a
+    ld (DX), a
+    inc iy
+    inc iy
+    ld a, (iy)
+    cp 0
+    jr z, endOfGame
+    jr resetLevel
+
+endOfGame:
+    ld hl, $4000
+    ld de, $4001
+    ld bc, 6911
+    
+    ld (hl), $00
+
+    ldir
 
 fin: jr fin
 
@@ -71,3 +94,5 @@ DY: db 0
     include check_mov.asm
     include move_player.asm
     include move_box.asm
+    include check_finish.asm
+    include increase_count.asm
