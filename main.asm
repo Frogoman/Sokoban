@@ -7,6 +7,10 @@
 
     ld iy, maplist
 resetLevel:
+    ; ld hl, background
+    ; ld de, $4000
+    ; ld bc, 6912
+    ; ldir
     ld hl, (iy)
     ld de, actualLevel
     ld bc, 773
@@ -47,6 +51,7 @@ boxAndPlayer:
 playerOnly:
     call movePlayer
     call checkFinish
+    call startSound
 
 skipCycle:
     ld a, 0
@@ -83,6 +88,8 @@ CY: equ actualLevel+2
 DX: db 0
 DY: db 0
 
+background: incbin sus.scr
+
     include wait_no_keys.asm
     include draw_xyc.asm
     include niveles_basicos.asm
@@ -96,3 +103,5 @@ DY: db 0
     include move_box.asm
     include check_finish.asm
     include increase_count.asm
+    include sound.asm
+    include texto.asm
