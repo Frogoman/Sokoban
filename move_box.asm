@@ -14,7 +14,7 @@ moveBox:
     call tileType
     ld hl, de
     set 5, (hl)
-    call tileType
-    call drawXYC
+    call fixColor
+    call drawTexture
 
     ret
