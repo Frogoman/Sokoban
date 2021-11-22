@@ -29,11 +29,12 @@ fixColor:
     ld a, (de)
     cp b
     jr z, boxTile
+
     ld a, $60
     ld b, a
     ld a, (de)
     cp b
-    jr z, boxTile
+    jr z, boxGoalTile
 
     ld a, $40
     ld b, a
@@ -51,27 +52,36 @@ fixColor:
     jr endColors
 
 floorTile:
-    ld a, $30
+    ld a, %00110000
+    pop bc
     jr endColors
 exteriorTile:
-    ld a, $00
+    ld a, %00000000
+    pop bc
     jr endColors
 cursorTile:
-    ld a, $28
+    ld a, %00110000
+    pop bc
     jr endColors
 boxTile:
-    ld a, $10
+    ld a, %00110010
+    pop bc
+    jr endColors
+boxGoalTile:
+    ld a, %00100010
+    pop bc
     jr endColors
 goalTile:
-    ld a, $20
+    ld a, %00110100
+    pop bc
     jr endColors
 wallTile:
-    ld a, $08
+    ld a, %00010111
+    pop bc
     jr endColors
 
-    ld a, $00
+    ld a, %00000000
 
 endColors:
-    pop bc
 
     ret
