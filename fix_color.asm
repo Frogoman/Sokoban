@@ -64,7 +64,7 @@ cursorTile:
     pop bc
     jr endColors
 boxTile:
-    ld a, %00110010
+    ld a, %00101010
     pop bc
     jr endColors
 boxGoalTile:
