@@ -47,6 +47,7 @@ boxAndPlayer:
 playerOnly:
     call movePlayer
     call startSound
+    call checkFinish
 
 skipCycle:
     ld a, 0
@@ -67,7 +68,7 @@ nextLevel:
     jr resetLevel
 
 endOfGame:
-    call CLEARSCR     
+    call CLEARSCR    
 
 fin: jr fin
 
