@@ -37,6 +37,4 @@ sumMov:
     pop hl
     pop bc
 
-    call fixColor
-
     ret
