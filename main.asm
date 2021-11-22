@@ -7,10 +7,6 @@
 
     ld iy, maplist
 resetLevel:
-    ; ld hl, background
-    ; ld de, $4000
-    ; ld bc, 6912
-    ; ldir
     ld hl, (iy)
     ld de, actualLevel
     ld bc, 773
@@ -50,7 +46,6 @@ boxAndPlayer:
 
 playerOnly:
     call movePlayer
-    call checkFinish
     call startSound
 
 skipCycle:
@@ -72,15 +67,10 @@ nextLevel:
     jr resetLevel
 
 endOfGame:
-    ld hl, $4000
-    ld de, $4001
-    ld bc, 6911
-    
-    ld (hl), $00
-
-    ldir
+    call CLEARSCR     
 
 fin: jr fin
+
 
 actualLevel: defs 773
 CX: equ actualLevel+3
@@ -90,18 +80,31 @@ DY: db 0
 
 background: incbin sus.scr
 
-    include wait_no_keys.asm
-    include draw_xyc.asm
-    include niveles_basicos.asm
-    include draw_map.asm
-    include fix_axis.asm
-    include fix_color.asm
-    include tile_type.asm
-    include wait_keys.asm
-    include check_mov.asm
-    include move_player.asm
-    include move_box.asm
-    include check_finish.asm
-    include increase_count.asm
-    include sound.asm
-    include texto.asm
+    include "niveles_basicos.asm"
+
+    include "wait_no_keys.asm"
+    include "wait_keys.asm"
+
+    include "draw_map.asm"
+    include "draw_texture.asm"
+
+    include "fix_axis.asm"
+    include "fix_color.asm"
+    include "fix_texture.asm"
+    include "tile_type.asm"
+    
+    include "check_mov.asm"
+    include "move_player.asm"
+    include "move_box.asm"
+
+    include "check_finish.asm"
+    include "increase_count.asm"
+
+    include "sound.asm"
+    include "texto.asm"
+wallTexture: 		defb $FF, $01, $01, $81, $FF, $10, $10, $18     ;128
+floorTexture: 		defb $00, $00, $00, $00, $00, $00, $00, $00     ;129
+cursorTexture: 		defb $3C, $3C, $3C, $18, $FF, $18, $3C, $66     ;130
+boxTexture: 		defb $FF, $C3, $A5, $99, $99, $A5, $C3, $FF     ;131
+goalTexture: 		defb $00, $00, $18, $3C, $3C, $18, $00, $00     ;132
+exteriorTexture:    defb $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF     ;133
