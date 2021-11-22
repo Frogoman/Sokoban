@@ -15,9 +15,8 @@ fixAxis:
     ld c, a
 
     pop de
-
     call fixColor
-    call drawXYC
+    call drawTexture
 
     pop bc
 
