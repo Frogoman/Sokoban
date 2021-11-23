@@ -13,7 +13,7 @@ startSound:
 	ld d, 16  	
 	ld e, 0 	
 	ld h, 0 
-    ld c, 16  
+    ld c, 16 
 
 bucleExt:       
 	dec h   	
