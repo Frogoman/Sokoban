@@ -4,13 +4,13 @@ checkFinish:
     push bc
     push af
 
-    LD hl, actualLevel
+    LD hl, currentLevel
     inc hl
     inc hl
     inc hl
     inc hl
     inc hl
-    ld ix, actualLevel
+    ld ix, currentLevel
     ld a, (ix)
     LD b, a
 
