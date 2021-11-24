@@ -7,11 +7,13 @@
 
     ld iy, maplist
 resetLevel:
-    ld hl, (iy)
+    call CLEARSCR
     ld de, currentLevel
+    ld hl, (iy)
     ld bc, 773
     ldir
 
+    call setOffset
     call drawMap
 
     ld de, currentLevel
@@ -68,18 +70,25 @@ nextLevel:
     jr resetLevel
 
 endOfGame:
-    call CLEARSCR    
+    call CLEARSCR
+    ld hl, gameOver
+    ld de, $4000
+    ld bc, 6912
+    ldir  
 
 fin: jr fin
 
 
 currentLevel: defs 773
-CX: equ currentLevel+3
 CY: equ currentLevel+2
-DX: db 0
+CX: equ currentLevel+3
 DY: db 0
+DX: db 0
+ScrOffsetY: db 10
+ScrOffsetX: db 5
 
-background: incbin sus.scr
+; background: incbin "sus.scr"
+gameOver:   incbin "game_over.scr"
 
     include "niveles_basicos.asm"
 
@@ -89,6 +98,7 @@ background: incbin sus.scr
     include "draw_map.asm"
     include "draw_texture.asm"
 
+    include "offset.asm"
     include "fix_axis.asm"
     include "fix_color.asm"
     include "fix_texture.asm"
