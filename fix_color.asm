@@ -52,7 +52,7 @@ fixColor:
     jr endColors
 
 floorTile:
-    ld a, %00110000
+    ld a, %00000000
     pop bc
     jr endColors
 exteriorTile:
@@ -60,11 +60,11 @@ exteriorTile:
     pop bc
     jr endColors
 cursorTile:
-    ld a, %00110000
+    ld a, %00000110
     pop bc
     jr endColors
 boxTile:
-    ld a, %00101010
+    ld a, %00110010
     pop bc
     jr endColors
 boxGoalTile:
@@ -72,11 +72,11 @@ boxGoalTile:
     pop bc
     jr endColors
 goalTile:
-    ld a, %00110100
+    ld a, %00000100
     pop bc
     jr endColors
 wallTile:
-    ld a, %00010111
+    ld a, %00101000
     pop bc
     jr endColors
 
