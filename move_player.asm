@@ -36,7 +36,6 @@ movePlayer:
     ld b, a
     ld a, (de)
     cp b
-    call checkFinish
 
     pop hl
     pop de
