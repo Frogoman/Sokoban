@@ -3,7 +3,7 @@ tileType:
     push hl
     push af   
 
-    LD DE, actualLevel
+    LD DE, currentLevel
     inc de
     ld a, (de)
     ld d, a
@@ -20,7 +20,7 @@ sumMov:
     LD E, C
     ADD HL, DE
 
-    LD DE, actualLevel
+    LD DE, currentLevel
     inc de
     inc de
     inc de
