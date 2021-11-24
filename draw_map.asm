@@ -3,13 +3,13 @@ drawMap:
     push bc
     push af
 
-    LD DE, actualLevel
+    LD DE, currentLevel
     inc de
     inc de
     inc de
     inc de
     inc de
-    ld ix, actualLevel
+    ld ix, currentLevel
     ld a, (ix)
     LD b, a
 
