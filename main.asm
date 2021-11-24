@@ -8,13 +8,13 @@
     ld iy, maplist
 resetLevel:
     ld hl, (iy)
-    ld de, actualLevel
+    ld de, currentLevel
     ld bc, 773
     ldir
 
     call drawMap
 
-    ld de, actualLevel
+    ld de, currentLevel
     inc de
     inc de
     ld a, (de)
@@ -73,9 +73,9 @@ endOfGame:
 fin: jr fin
 
 
-actualLevel: defs 773
-CX: equ actualLevel+3
-CY: equ actualLevel+2
+currentLevel: defs 773
+CX: equ currentLevel+3
+CY: equ currentLevel+2
 DX: db 0
 DY: db 0
 
