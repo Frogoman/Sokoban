@@ -1,8 +1,19 @@
 drawTexture:
 	push bc
     push de
+	push af
+
+	ld a, (ScrOffsetY)
+	add b
+	ld b,a
+	
+	ld a, (ScrOffsetX)
+	add c
+	ld c,a
+
+	pop af
 	call PREP_PRT
-	ld b, 32
+
 
 	call fixTexture
     push af
