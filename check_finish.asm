@@ -32,7 +32,7 @@ loopxF:
     djnz loopyF
 
     ld a, d
-    cp 1;(ix+4)
+    cp (ix+4)
 
     call z, nextLevel
 
