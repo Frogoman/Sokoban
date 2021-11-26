@@ -5,14 +5,31 @@
     di
     ld sp, 0
 
+    call CLEARSCR
+    ld hl, pregame
+    ld de, $4000
+    ld bc, 6912
+    ldir 
+    call pausa
+    call pausa
+
     ld iy, maplist
 resetLevel:
+    call fixLevelUnits
     call CLEARSCR
+    ld b, 10
+	ld c, 0		
+    ld a, %01001101 
+    ld ix, miTexto 
+	call PRINTAT 
+    call pausa
+
     ld de, currentLevel
     ld hl, (iy)
     ld bc, 773
     ldir
 
+    call CLEARSCR
     call setOffset
     call drawMap
 
@@ -67,7 +84,7 @@ nextLevel:
     ld a, (iy)
     cp 0
     jr z, endOfGame
-    jr resetLevel
+    jp resetLevel
 
 endOfGame:
     call CLEARSCR
@@ -78,19 +95,28 @@ endOfGame:
 
 fin: jr fin
 
-
 currentLevel: defs 773
+
 CY: equ currentLevel+2
 CX: equ currentLevel+3
 DY: db 0
 DX: db 0
+
 ScrOffsetY: db 10
 ScrOffsetX: db 5
 
-; background: incbin "sus.scr"
+miTexto: defm $20, $20, $20, $20, $20, $20, $20, $20, $20, $20, $20, $20, "Level "
+levelDec: db 48
+levelUni: db 48
+miTextoFin: defm $20, $20, $20, $20, $20, $20, $20, $20, $20, $20, $20, $20, 0
+
+
+pregame:    incbin "pregame.scr"
 gameOver:   incbin "game_over.scr"
 
     include "niveles_basicos.asm"
+    include "pausa.asm"
+    include "fix_level_dec.asm"
 
     include "wait_no_keys.asm"
     include "wait_keys.asm"
