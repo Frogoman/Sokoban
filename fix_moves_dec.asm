@@ -17,7 +17,7 @@ fixMovesUnits:
     ld b, a
     ld a, (movesCen)
     cp b
-    call z, reached999
+    call z, reached999Moves
 
     ret
 
@@ -35,7 +35,7 @@ increaseMovesCen:
     ld a, 48
     ld (movesDec), a
 
-reached999:
+reached999Moves:
     ld a, 48
     ld (movesCen), a
 
