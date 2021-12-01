@@ -2,7 +2,7 @@ levelInfo:
     ld b, 0
 	ld c, 0		
     ld a, %00000101 
-    ld ix, overviewText
+    ld ix, overviewText1
 	call PRINTAT 
 
     ld b, 0
@@ -32,6 +32,14 @@ levelInfo:
 	call PRINTAT
 
     call levelInfoMoves
+
+    ld b, 23
+	ld c, 21
+    ld a, %00000101 	
+    ld ix, overviewText4
+	call PRINTAT
+
+    call levelInfoPushes
 
     ret
 
@@ -67,6 +75,27 @@ levelInfoMoves:
 	ld c, 9
     ld a, %00000101 	
     ld ix, movesUni
+	call PRINTAT 
+
+    ret
+
+levelInfoPushes:
+    ld b, 23
+	ld c, 29
+    ld a, %00000101 	
+    ld ix, pushesCen
+	call PRINTAT 
+
+    ld b, 23
+	ld c, 30
+    ld a, %00000101 	
+    ld ix, pushesDec
+	call PRINTAT 
+
+    ld b, 23
+	ld c, 31
+    ld a, %00000101 	
+    ld ix, pushesUni
 	call PRINTAT 
 
     ret
