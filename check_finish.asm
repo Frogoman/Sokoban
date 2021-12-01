@@ -4,6 +4,10 @@ checkFinish:
     push bc
     push af
 
+    ld a, 48
+    ld (boxUni), a
+    ld (boxDec), a
+
     LD hl, currentLevel
     inc hl
     inc hl
