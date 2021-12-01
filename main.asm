@@ -66,6 +66,7 @@ keyPressed:
 
 boxAndPlayer:
     call moveBox
+    call fixPushesUnits
 
 playerOnly:
     call movePlayer
@@ -74,6 +75,7 @@ playerOnly:
     call levelInfoBoxes
     call levelInfoMoves
     call fixMovesUnits
+    call levelInfoPushes
 
 skipCycle:
     ld a, 0
@@ -122,14 +124,19 @@ movesCen: db 48, 0
 movesDec: db 48, 0
 movesUni: db 48, 0
 
+pushesCen: db 48, 0
+pushesDec: db 48, 0
+pushesUni: db 48, 0
+
+
 
 nextLevelText: defm "            Level ", 0
 nextLevelTextEnd: defm "            ", 0
 
-
-overviewText: defm "Level ", 0
+overviewText1: defm "Level ", 0
 overviewText2: defm "Boxes: ", 0
 overviewText3: defm "Moves: ", 0
+overviewText4: defm "Pushes: ", 0
 
 
 pregame:    incbin "pregame.scr"
@@ -141,6 +148,7 @@ gameOver:   incbin "game_over.scr"
     include "fix_level_dec.asm"
     include "fix_box_dec.asm"
     include "fix_moves_dec.asm"
+    include "fix_pushes_dec.asm"
     include "prelevel_info.asm"
     include "level_info.asm"
 
