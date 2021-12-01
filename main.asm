@@ -39,7 +39,7 @@ resetLevel:
     ld a, (de)
     ld (CX), a
 
-    ld a, 57
+    ld a, 48
     ld (boxUni), a
     ld (boxDec), a
     ld (movesCen), a
