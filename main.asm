@@ -10,8 +10,8 @@
     ld de, $4000
     ld bc, 6912
     ldir 
-    ; call pausa
-    ; call pausa
+    call pausa
+    call pausa
 
     ld iy, maplist
 resetLevel:
