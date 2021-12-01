@@ -10,28 +10,25 @@
     ld de, $4000
     ld bc, 6912
     ldir 
-    call pausa
-    call pausa
+    ; call pausa
+    ; call pausa
 
     ld iy, maplist
 resetLevel:
     call fixLevelUnits
     call CLEARSCR
-    ld b, 10
-	ld c, 0		
-    ld a, %01001101 
-    ld ix, miTexto 
-	call PRINTAT 
-    call pausa
+    call prelevelInfo
 
     ld de, currentLevel
     ld hl, (iy)
     ld bc, 773
     ldir
 
-    call CLEARSCR
     call setOffset
+
+    call CLEARSCR
     call drawMap
+    call levelInfo
 
     ld de, currentLevel
     inc de
@@ -41,6 +38,13 @@ resetLevel:
     inc de
     ld a, (de)
     ld (CX), a
+
+    ld a, 57
+    ld (boxUni), a
+    ld (boxDec), a
+    ld (movesCen), a
+    ld (movesDec), a
+    ld (movesUni), a
 
     jr keyPressed
 
@@ -67,6 +71,9 @@ playerOnly:
     call movePlayer
     call startSound
     call checkFinish
+    call levelInfoBoxes
+    call levelInfoMoves
+    call fixMovesUnits
 
 skipCycle:
     ld a, 0
@@ -105,10 +112,24 @@ DX: db 0
 ScrOffsetY: db 10
 ScrOffsetX: db 5
 
-miTexto: defm $20, $20, $20, $20, $20, $20, $20, $20, $20, $20, $20, $20, "Level "
-levelDec: db 48
-levelUni: db 48
-miTextoFin: defm $20, $20, $20, $20, $20, $20, $20, $20, $20, $20, $20, $20, 0
+levelDec: db 48, 0
+levelUni: db 48, 0
+
+boxDec: db 48, 0
+boxUni: db 48, 0
+
+movesCen: db 48, 0
+movesDec: db 48, 0
+movesUni: db 48, 0
+
+
+nextLevelText: defm "            Level ", 0
+nextLevelTextEnd: defm "            ", 0
+
+
+overviewText: defm "Level ", 0
+overviewText2: defm "Boxes: ", 0
+overviewText3: defm "Moves: ", 0
 
 
 pregame:    incbin "pregame.scr"
@@ -116,7 +137,12 @@ gameOver:   incbin "game_over.scr"
 
     include "niveles_basicos.asm"
     include "pausa.asm"
+
     include "fix_level_dec.asm"
+    include "fix_box_dec.asm"
+    include "fix_moves_dec.asm"
+    include "prelevel_info.asm"
+    include "level_info.asm"
 
     include "wait_no_keys.asm"
     include "wait_keys.asm"
