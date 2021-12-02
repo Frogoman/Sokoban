@@ -139,7 +139,7 @@ overviewText3: defm "Moves: ", 0
 overviewText4: defm "Pushes: ", 0
 
 
-pregame:    incbin "pregame.scr"
+pregame:    incbin "pre_game.scr"
 gameOver:   incbin "game_over.scr"
 
     include "niveles_basicos.asm"
