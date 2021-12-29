@@ -14,11 +14,13 @@
     call pausa
 
     ld iy, maplist
+    
 resetLevel:
     call fixLevelUnits
     call CLEARSCR
     call prelevelInfo
 
+resetCurrentLevel:
     ld de, currentLevel
     ld hl, (iy)
     ld bc, 773
@@ -45,11 +47,14 @@ resetLevel:
     ld (movesCen), a
     ld (movesDec), a
     ld (movesUni), a
+    ld (pushesCen), a
+    ld (pushesDec), a
+    ld (pushesUni), a
 
     jr keyPressed
 
 waitKeys:
-    call waitAKey
+    call waitAkey
 
 keyPressed:
     ld a, (CY)
