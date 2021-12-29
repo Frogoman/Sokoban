@@ -1,4 +1,4 @@
-waitAKey:
+waitAkey:
     ld bc, $fdfe
     in a, (c)
     bit 0, a
@@ -27,7 +27,14 @@ waitWkey:
     ld bc, $fbfe
     in a, (c)
     bit 1, a
-    jr nz, waitAKey
+    jr nz, waitOkey
     ld a, -1
     ld (DY), a
     call keyPressed
+
+waitOkey:
+    ld bc, $dffe
+    in a, (c)
+    bit 1, a
+    jr nz, waitAkey
+    call resetCurrentLevel
